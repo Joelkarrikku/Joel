@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Tracking System - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background-color: #237DA1;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 2rem; /* Increased font size for the company name */
+        }
+
+        .header-right .logout-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header-right .logout-button:hover {
+            background-color: white;
+            color: #004d40;
+        }
+
+        .profile-header {
+            background-color: #80cbc4;
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 80px;
+            height: 80px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .profile-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+        }
+
+        .profile-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-actions button {
+            background-color: transparent;
+            border: 2px solid #004d40;
+            color: #004d40;
+            margin-right: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .profile-actions button:hover {
+            background-color: #004d40;
+            color: white;
+        }
+
+        .about-me {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .about-me h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            border-bottom: 2px solid #00695c;
+            padding-bottom: 10px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            flex: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            border-bottom: 2px solid #00695c;
+            padding-bottom: 10px;
+        }
+
+        .card label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .profile-details p {
+            margin: 10px 0;
+        }
+
+        .conversations .conversation-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .conversations .conversation-pic {
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background-color: #237DA1;
+            color: white;
+            padding: 15px 0;
+            margin-top: auto;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer h2 {
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-right img {
+            margin-left: 10px;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-right img:hover {
+            opacity: 0.7;
+        }
+
+        /* Modal styling */
+        #edit-profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #edit-profile-modal .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        #edit-profile-modal h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            border-bottom: 2px solid #00695c; 
+            padding-bottom: 10px;
+        }
+
+        #edit-profile-modal label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        #edit-profile-modal input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #edit-profile-modal button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        #save-profile-button {
+            background-color: #004d40;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        #save-profile-button:hover {
+            background-color: #00332e;
+        }
+
+        #close-modal-button {
+            background-color: #ddd;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        #close-modal-button:hover {
+            background-color: #ccc;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile-actions {
+                margin-top: 15px;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-left">
+                <h1>Company Name</h1>
+            </div>
+            <div class="header-right">
+                <button class="logout-button" aria-label="Logout">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" role="main">
+        <section class="profile-header" aria-labelledby="profile-header">
+            <div class="container">
+                <div class="profile-info">
+                    <img src="profile-pic.jpg" alt="Profile picture of John Doe" class="profile-pic">
+                    <div>
+                        <h2 id="profile-header">John Doe</h2>
+                        <p>Software Developer</p>
+                        <p>john.doe@example.com</p>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button onclick="openEditProfileModal()">Edit Profile</button>
+                    <button>View Applications</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-me">
+            <h3>About Me</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        </section>
+
+        <section class="content">
+            <div class="card">
+                <h3>Current Applications</h3>
+                <label><input type="checkbox"> Application 1</label>
+                <label><input type="checkbox"> Application 2</label>
+                <label><input type="checkbox"> Application 3</label>
+            </div>
+            <div class="card">
+                <h3>Notifications</h3>
+                <p>No new notifications</p>
+            </div>
+            <div class="card">
+                <h3>Conversations</h3>
+                <div class="conversations">
+                    <div class="conversation-item">
+                        <img src="contact-pic.jpg" alt="Contact profile picture" class="conversation-pic">
+                        <p>Jane Smith: Hello!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <h2>Company Name</h2>
+            <p>&copy; 2024. All rights reserved.</p>
+            <div class="footer-right">
+                <img src="social-icon1.png" alt="Social media icon 1" />
+                <img src="social-icon2.png" alt="Social media icon 2" />
+                <img src="social-icon3.png" alt="Social media icon 3" />
+            </div>
+        </div>
+    </footer>
+
+    <div id="edit-profile-modal" role="dialog" aria-labelledby="edit-profile-modal-title" aria-modal="true">
+        <div class="modal-content">
+            <h3 id="edit-profile-modal-title">Edit Profile</h3>
+            <label for="name">Name:</label>
+            <input type="text" id="name" aria-required="true" placeholder="John Doe">
+            <label for="email">Email:</label>
+            <input type="email" id="email" aria-required="true" placeholder="john.doe@example.com">
+            <button id="save-profile-button">Save Changes</button>
+            <button id="close-modal-button" onclick="closeEditProfileModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openEditProfileModal() {
+            document.getElementById('edit-profile-modal').style.display = 'flex';
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById('edit-profile-modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cococomp - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .container h1 {
+            font-size: 2.5rem; /* Increased font size */
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .container p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .container input[type="email"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .container input:focus {
+            border-color: #feb47b; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        .container button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff7e5f; /* Button color */
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .container button:hover {
+            background-color: #feb47b; /* Lighter shade on hover */
+        }
+
+        .container a {
+            color: #007BFF;
+            text-decoration: none;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 1rem;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        /* Transparent header styles */
+        .nav-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+            padding: 1rem;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+        }
+
+        .nav-header-bg .company-name {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff; /* Text color changed to white */
+        }
+
+        .nav-header-bg nav {
+            display: flex;
+            gap: 1rem; /* Adds equal spacing between the buttons */
+        }
+
+        .nav-header-bg button {
+            padding: 8px 12px;
+            border: 2px solid #fff; /* White border */
+            border-radius: 5px;
+            background-color: transparent;
+            color: #fff; /* Text color changed to white */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        .nav-header-bg button:hover {
+            background-color: #ff7e5f; /* Background color on hover */
+            color: #fff; /* Text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="nav-header-bg">
+        <div class="company-name">Cococomp</div>
+        <nav>
+            <button onclick="window.location.href='home.html'">Home</button>
+            <button onclick="window.location.href='Signup1.html'">Signup</button>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Cococomp</h1>
+        <p>Login to your account</p>
+        <form action="login.php" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <a href="forgotpass.html">Forgot Password?</a>
+        </form>
+    </div>
+    <footer>
+        <p>© 2024, Cococomp Corporation Pvt. Ltd. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Hire - Reset Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #add8e6;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .company-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000;
+            margin-left: 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            margin-right: 2rem;
+        }
+
+        nav button {
+            padding: 8px 12px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #000;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        nav button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            margin: 80px 20px 20px;
+        }
+
+        .content {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            align-self: flex-start;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        form button {
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #444;
+        }
+
+        .terms {
+            font-size: 0.875rem;
+            color: #999;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #333;
+            font-size: 0.875rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .otp-container {
+            display: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .otp-container.active {
+            display: block;
+        }
+
+        .otp-success {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        let generatedOTP = ""; // Store OTP for validation
+
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function generateOTP() {
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString(); // Generate 6-digit OTP
+            alert("Your OTP is: " + generatedOTP); // Simulating sending OTP by showing an alert
+            document.querySelector('.otp-container').classList.add('active'); // Show the OTP input field
+        }
+
+        function validateForm() {
+            const emailField = document.getElementById('email');
+            const email = emailField.value;
+            const errorMsg = document.getElementById('error-msg');
+            const otpField = document.getElementById('otp');
+            const enteredOTP = otpField.value;
+
+            if (!validateEmail(email)) {
+                errorMsg.textContent = "Please enter a valid email address.";
+                return false;
+            }
+
+            if (enteredOTP !== generatedOTP) {
+                errorMsg.textContent = "Invalid OTP.";
+                return false;
+            }
+
+            errorMsg.textContent = ""; // Clear the error message
+            return true;
+        }
+
+        function handleSubmit(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Validate form inputs
+            if (validateForm()) {
+                // If valid, redirect to login page
+                window.location.href = 'login.html'; // Redirect to the login page
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="company-name">NEXUS Hire</div>
+        <nav>
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button onclick="window.location.href='signup.html'">Signup</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h2>Reset Your Password</h2>
+        </div>
+        <form onsubmit="handleSubmit(event)">
+            <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
+
+            <!-- Email input field -->
+            <label for="email">Enter Your Email</label>
+            <input type="email" id="email" name="email" required>
+            <p id="error-msg" style="color: red;"></p> <!-- Error message display -->
+
+            <!-- Send OTP Button -->
+            <button type="button" onclick="generateOTP()">Send Link (Generate OTP)</button>
+
+            <!-- OTP input field -->
+            <div class="otp-container">
+                <label for="otp">Enter OTP</label>
+                <input type="text" id="otp" name="otp" placeholder="Enter the OTP" required>
+            </div>
+
+            <label for="new-password">Enter New Password</label>
+            <input type="password" id="new-password" name="new_password" required>
+
+            <label for="confirm-password">Re-Enter Password</label>
+            <input type="password" id="confirm-password" name="confirm_password" required>
+
+            <button type="submit">Confirm</button>
+        </form>
+        <p class="terms">By continuing, you agree to our Terms of Service and Privacy Policy</p>
+    </div>
+    <footer>
+        © 2024, NexusHire Corporation Pvt. Ltd. All Rights Reserved.
+    </footer>
+</body>
+</html>

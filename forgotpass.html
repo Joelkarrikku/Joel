@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cococomp - Forgot Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+            overflow: hidden; /* Prevents scrolling */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        header {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            backdrop-filter: blur(10px); /* Adds a blur effect to the header background */
+        }
+
+        .company-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-left: 2rem; /* Adjusted margin to make sure it is visible */
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem; /* Adds equal spacing between the buttons */
+            margin-right: 2rem; /* Align to the right */
+        }
+
+        nav button {
+            padding: 10px 15px; /* Button styles */
+            border: none; /* No border */
+            border-radius: 25px; /* Rounded button */
+            background-color: #ffffff; /* White background for buttons */
+            color: #2575fc; /* Text color */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Josefin Sans', sans-serif; /* Josefin Sans font */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+
+        nav button:hover {
+            background-color: #2575fc; /* Change background color on hover */
+            color: #fff; /* Change text color on hover */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+            border-radius: 10px;
+            padding: 40px; /* Increased padding */
+            max-width: 600px; /* Adjusted max width */
+            width: 90%; /* Adjusted width */
+            margin: 20px;
+            backdrop-filter: blur(10px); /* Blur effect on the container */
+        }
+
+        .illustration {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .illustration img {
+            max-width: 80%; /* Adjusted max-width for better fit */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .content {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content h2 {
+            font-size: 2.5rem; /* Increased font size */
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centered the form elements */
+        }
+
+        form label {
+            align-self: flex-start; /* Align label to the start */
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold; /* Bold label text */
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px; /* Increased margin for better spacing */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease; /* Smooth border color transition */
+        }
+
+        form input:focus {
+            border-color: #2575fc; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        form button {
+            width: 100%;
+            background-color: #2575fc; /* Button color */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #1e5cb1; /* Darker blue on hover */
+        }
+
+        .terms {
+            font-size: 0.875rem;
+            color: #999;
+            margin-top: 10px;
+            text-align: center; /* Centered the terms text */
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0); /* Transparent background */
+            color: #ffffff;
+            font-size: 0.875rem;
+            position: fixed; /* Position fixed to keep it at the bottom */
+            bottom: 0;
+            left: 0; /* Align to the left */
+            right: 0; /* Align to the right */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="company-name">Cococomp</div>
+        <nav>
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button onclick="window.location.href='signup.html'">Signup</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="illustration">
+            <img src="https://img.freepik.com/free-vector/forgot-password-concept-illustration_114360-1123.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716249600&semt=ais_user" alt="Forgot Password Illustration">
+        </div>
+        <div class="content">
+            <h2>Forgot Your Password?</h2>
+            <p>Enter your email address associated with your account and we will send you the link to reset your password.</p>
+        </div>
+        <form id="resetPasswordForm" onsubmit="return handleSubmit(event)">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Send Link</button>
+        </form>
+        
+        <p class="terms">By continuing, you agree to our Terms of Service and Privacy Policy</p>
+    </div>
+    <footer>
+        © 2024, Cococomp Corporation Pvt. Ltd. All Rights Reserved.
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevents the form from submitting the traditional way
+            const email = document.getElementById('email').value;
+            // Here you could add logic to send the email to your server
+            
+            // Redirect to resetpass.html after a delay to simulate sending the email
+            setTimeout(() => {
+                window.location.href = 'resetpass.html'; // Redirect to the reset password page
+            }, 500); // Adjust the delay as needed
+        }
+    </script>
+</body>
+</html>

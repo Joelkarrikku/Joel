@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocoomp - Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #e6f3ff;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #b3d9ff;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #0066cc;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            padding: 10px 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .overview-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 18%;
+            text-align: center;
+            min-width: 150px; /* Added for better responsiveness */
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        .card small {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .chart-small {
+            height: 100px;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        .statistics {
+            display: flex;
+            flex-wrap: wrap; /* Added for better responsiveness */
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .chart {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 48%;
+            text-align: center;
+            min-width: 250px; /* Added for better responsiveness */
+        }
+
+        .chart h3 {
+            margin: 0 0 20px;
+            font-size: 20px;
+            color: #666;
+        }
+
+        .line-chart,
+        .bar-chart,
+        .pie-chart {
+            height: 250px;
+            width: 100%; /* Ensure charts use full width */
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        /* Media Queries for Mobile Optimization */
+        @media (max-width: 768px) {
+            .overview-cards {
+                flex-direction: column; /* Stack cards vertically on small screens */
+                align-items: center; /* Center align for better aesthetics */
+            }
+
+            .card {
+                width: 90%; /* Full width for cards on mobile */
+            }
+
+            .statistics {
+                flex-direction: column; /* Stack charts vertically */
+            }
+
+            .chart {
+                width: 90%; /* Full width for charts on mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">Cocoomp</div>
+        <a href="profile.html" aria-label="Profile">
+            <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHiGq5x0SqinC4KFPlAT-L5DEnn_5reux9sQ&s" alt="Profile Picture">
+        </a>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="alljobs.html">All Jobs</a></li>
+            <li><a href="overview.html">Overview</a></li>
+            <li><a href="report.html">Report</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="overview-cards" role="region" aria-labelledby="overview-title">
+            <h2 id="overview-title" class="visually-hidden">Overview of Candidates and Jobs</h2>
+            <div class="card">
+                <h3>Total Candidates</h3>
+                <p>4,200</p>
+                <small>1,200 more than last year</small>
+                <canvas id="pieChart1" class="chart-small" aria-label="Pie chart showing total candidates"></canvas>
+            </div>
+            <div class="card">
+                <h3>Candidates This Month</h3>
+                <p>678</p>
+                <small>Increase of 50 from last month</small>
+                <canvas id="lineChart1" class="chart-small" aria-label="Line chart showing candidates this month"></canvas>
+            </div>
+            <div class="card">
+                <h3>Total Jobs</h3>
+                <p>35</p>
+                <small>5 new jobs posted this month</small>
+                <canvas id="pieChart2" class="chart-small" aria-label="Pie chart showing total jobs"></canvas>
+            </div>
+            <div class="card">
+                <h3>Jobs Filled</h3>
+                <p>20</p>
+                <small>2 more positions filled this month</small>
+                <canvas id="barChart1" class="chart-small" aria-label="Bar chart showing jobs filled"></canvas>
+            </div>
+            <div class="card">
+                <h3>Active Recruitments</h3>
+                <p>15</p>
+                <small>Currently hiring for 5 departments</small>
+                <canvas id="pieChart3" class="chart-small" aria-label="Pie chart showing active recruitments"></canvas>
+            </div>
+        </div>
+        <div class="statistics" role="region" aria-labelledby="statistics-title">
+            <h2 id="statistics-title" class="visually-hidden">Statistics Charts</h2>
+            <div class="chart">
+                <h3>Monthly Applications</h3>
+                <canvas id="lineChart" class="line-chart" aria-label="Line chart showing monthly applications"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Job Distribution</h3>
+                <canvas id="barChart" class="bar-chart" aria-label="Bar chart showing job distribution"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Applicants by Department</h3>
+                <canvas id="pieChart" class="pie-chart" aria-label="Pie chart showing applicants by department"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Page entry animation
+        window.onload = function () {
+            const header = document.getElementById("header");
+            const body = document.body;
+            header.style.transform = "translateX(0)"; // Slide header into view
+            body.style.opacity = 1; // Fade in the body
+
+            // Initialize charts in cards
+            initializeCardCharts();
+        };
+
+        // Handle page transitions
+        function navigateTo(url) {
+            window.location.href = url; // Navigate to the specified URL
+        }
+
+        function initializeCardCharts() {
+            const ctx1 = document.getElementById('pieChart1').getContext('2d');
+            const ctx2 = document.getElementById('lineChart1').getContext('2d');
+            const ctx3 = document.getElementById('pieChart2').getContext('2d');
+            const ctx4 = document.getElementById('barChart1').getContext('2d');
+            const ctx5 = document.getElementById('pieChart3').getContext('2d');
+
+            new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['Accepted', 'Rejected', 'Pending'],
+                    datasets: [{
+                        data: [3000, 1000, 1200],
+                        backgroundColor: ['#4caf50', '#f44336', '#ffeb3b'],
+                    }]
+                }
+            });
+
+            new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Candidates',
+                        data: [150, 200, 300, 250],
+                        borderColor: '#0066cc',
+                        fill: false,
+                    }]
+                }
+            });
+
+            new Chart(ctx3, {
+                type: 'pie',
+                data: {
+                    labels: ['Engineering', 'Marketing', 'Sales'],
+                    datasets: [{
+                        data: [15, 10, 10],
+                        backgroundColor: ['#2196F3', '#FF9800', '#9C27B0'],
+                    }]
+                }
+            });
+
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: ['Position 1', 'Position 2', 'Position 3', 'Position 4'],
+                    datasets: [{
+                        label: 'Filled Jobs',
+                        data: [5, 7, 8, 0],
+                        backgroundColor: '#4caf50',
+                    }]
+                }
+            });
+
+            new Chart(ctx5, {
+                type: 'pie',
+                data: {
+                    labels: ['Active', 'Inactive'],
+                    datasets: [{
+                        data: [10, 5],
+                        backgroundColor: ['#4caf50', '#f44336'],
+                    }]
+                }
+            });
+
+            // Initialize main statistics charts
+            initializeMainCharts();
+        }
+
+        function initializeMainCharts() {
+            const ctxLine = document.getElementById('lineChart').getContext('2d');
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            const ctxPie = document.getElementById('pieChart').getContext('2d');
+
+            new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['January', 'February', 'March', 'April'],
+                    datasets: [{
+                        label: 'Applications',
+                        data: [300, 400, 350, 500],
+                        borderColor: '#f44336',
+                        fill: false,
+                    }]
+                }
+            });
+
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Engineering', 'Marketing', 'Sales'],
+                    datasets: [{
+                        label: 'Jobs Posted',
+                        data: [15, 10, 20],
+                        backgroundColor: '#2196F3',
+                    }]
+                }
+            });
+
+            new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: ['Engineering', 'Marketing', 'Sales'],
+                    datasets: [{
+                        data: [30, 20, 50],
+                        backgroundColor: ['#FF9800', '#4caf50', '#9C27B0'],
+                    }]
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

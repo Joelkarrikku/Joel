@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Hire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            background-color: transparent; /* Changed to transparent */
+            color: #000;
+            line-height: 1.6;
+            font-family: 'Josefin Sans', sans-serif;
+            scroll-behavior: smooth; /* Add smooth scrolling */
+        }
+
+    
+        header {
+            background-color: rgba(0, 195, 197, 0.9); 
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 90%;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            border-radius: 20px;
+        }
+
+        /* Navigation styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        nav .logo {
+            font-size: 2rem;
+            color: #060101;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #060101;
+        }
+
+        .signup-btn {
+            text-decoration: none;
+            color: #00c3c5;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-left: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            background-color: #00a1a3;
+            color: #fff;
+        }
+
+        /* Hero section styling */
+        .hero {
+            width: 100%;
+            min-height: 110vh;
+            background-image: url('https://i.postimg.cc/KjNwVWJq/2111-w013-n001-569-B-p30-569.jpg');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .hero .content {
+            max-width: 700px;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            background-color: none; /* Optional: Adjust for better readability */
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 30px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 20px;
+            padding-left: 0;
+            text-align: left;
+        }
+
+        .features li {
+            margin: 10px 0;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Section styling */
+        .section {
+            padding: 60px 20px;
+        }
+
+        #about, #contact {
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        #about h2, #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #about p, #contact p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #00c3c5;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        /* Styling for the second section */
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #showcase {
+            height: 400px;
+            background: url('your-image.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.7);
+            background-blend-mode: multiply;
+        }
+
+             h1 {
+            font-size: 50px;
+            margin: 0;
+        }
+            p {
+            font-size: 20px;
+        }
+
+        .info, .team, .contact, .map-section {
+            background: transparent; /* Changed to transparent */
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .team h2, .contact h2, .map-section h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .team-member {
+            text-align:center;
+            margin: 10px;
+            width: 150px;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+
+        .team-member h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .team-member p {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        .map-section {
+            text-align: center;
+        }
+
+        .contact {
+            background: #333333;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #ffffff;
+        }
+
+        .contact p, .contact a {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .contact a {
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .contact a:hover {
+            border-bottom: 1px solid #50b3a2;
+            color: #50b3a2;
+        }
+
+        /* Help Section */
+    p {
+            background: #f9f9f9;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .faq {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        #help .faq h3 {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        #help .faq p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">NEXUS Hire</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#help">Help</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="http://localhost/signup1.html" class="signup-btn">Signup</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero" id="home">
+            <div class="content">
+                <h1>NEXUS Hire</h1>
+                <h2>Your all-together hiring platform</h2>
+                <p>Delivering better hiring solutions from sourcing to onboarding, we help you connect teams and propel success – all in Nexus.</p>
+                <a href="https://youtu.be/ugHc-7ruWHE?si=JsYtxHkYe04MBULm" class="btn">Watch a Demo</a>
+                <ul class="features">
+                    <li>Job Posting and Distribution</li>
+                    <li>Application Tracking</li>
+                    <li>Interview Scheduling</li>
+                    <li>Compliance Management</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- New Section -->
+        <div class="section" id="info">
+            <div class="container">
+                <div class="info">
+                    <h2>Our Features</h2>
+                    <p>NEXUS Hire offers a comprehensive suite of tools designed to streamline the recruitment process. From job posting and distribution to application tracking and compliance, our platform is designed to make hiring easier and more efficient.</p>
+                    <p>Experience the future of hiring with features like:</p>
+                    <ul>
+                        <li>Advanced Resume Parsing</li>
+                        <li>Automated Screening and Scoring</li>
+                        <li>Customizable Workflow Management</li>
+                        <li>Integrated Communication Tools</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Members Section -->
+        <div class="team section" id="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-member">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHiGq5x0SqinC4KFPlAT-L5DEnn_5reux9sQ&s" alt="Team Member 1">
+                <h3>Jane Doe</h3>
+                <p>CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL-C0aioFnf5WKiLurde9-gZOGetLNo_Y8c3dzx6tSJLl0gZt6brrW5a3My40ogf4ObCM&usqp=CAU" alt="Team Member 2">
+                <h3>John Smith</h3>
+                <p>CTO</p>
+            </div>
+            <div class="team-member">
+                <img src="https://img.freepik.com/free-psd/portrait-woman-using-tablet-device_23-2150116768.jpg?size=338&ext=jpg&ga=GA1.1.553209589.1714176000&semt=ais" alt="Team Member 3">
+                <h3>Emily Johnson</h3>
+                <p>COO</p>
+            </div>
+        </div>
+
+        <div class="section" id="about">
+            <h2>About Us</h2>
+            <p>At NEXUS Hire, we believe that the recruitment process should be seamless and effective. Our platform integrates cutting-edge technology to provide you with the best hiring solutions. From small businesses to large enterprises, we cater to all your recruitment needs.</p>
+        </div>
+
+        <!-- Location Section -->
+        <div class="section map-section" id="location">
+            <h2>Our Location</h2>
+            <div class="map">
+                <!-- Embedded map code -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.1583736468!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316b08aef1%3A0x4d6c2d71bc7d18b!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1630457684801!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <!-- Help Section -->
+        <div class="section" id="help">
+            <h2>Help Desk</h2>
+            <p>Welcome to our help desk! Here, you'll find answers to commonly asked questions and information to assist you with using our platform.</p>
+            <div class="faq">
+                <h3>Frequently Asked Questions</h3>
+                <p><strong>Q:</strong> How do I post a job?</p>
+                <p><strong>A:</strong> To post a job, simply log in to your account, navigate to the dashboard , and click on the "Post Job" button. Fill out the required information and submit your job posting.</p>
+                <p><strong>Q:</strong> Can I track the status of my job postings?</p>
+                <p><strong>A:</strong> Yes, you can track the status of your job postings from the dashboard. You'll be able to see the number of views, applications, and other relevant metrics.</p>
+                <p><strong>Q:</strong> How do I schedule interviews with candidates?</p>
+                <p><strong>A:</strong> Interview scheduling can be done through our platform. Once you receive applications, you can review them and schedule interviews directly from the candidate's profile.</p>
+            </div>
+        </div>
+
+        <div class="section" id="contact">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you! Whether you have a question about features, trials, pricing, or anything else, our team is ready to answer all your questions.</p>
+            <p>Email: contact@nexushire.com</p>
+            <p>Phone: 1-800-006-100</p>
+            <p>Follow us on <a href="https://in.linkedin.com/?src=go-pa&trk=sem-ga_campid.14650114788_asid.151761418307_crid.657403558721_kw.sign%20in%20to%20linkedin_d.c_tid.kwd-46592953206_n.g_mt.e_geo.9062015&mcid=6844056167778418689&cid=&gad_source=1&gclid=CjwKCAjw9cCyBhBzEiwAJTUWNWDAzKXpVOiFT8Ew0UhIgm5aNyTWb2UlwWflvFkBqBXdKgdmt3pXhhoCV6sQAvD_BwE&gclsrc=aw.ds">LinkedIn</a>, <a href="https://x.com/">Twitter</a>, and <a href="https://www.facebook.com/login.php/">Facebook</a> for the latest updates.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NEXUS Hire. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cococomp - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #e6f3ff;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #b3d9ff;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-family: "Josefin Sans", sans-serif;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #0066cc;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            padding: 10px 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .overview-cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 18%;
+            text-align: center;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        .statistics {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .chart {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 48%;
+            text-align: center;
+        }
+
+        .chart h3 {
+            margin: 0 0 20px;
+            font-size: 20px;
+            color: #666;
+        }
+
+        .bar-chart {
+            height: 250px;
+        }
+
+        .pie-chart {
+            height: 250px;
+            width: 250px;
+            margin: 0 auto;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">Cococomp</div>
+        <a href="profile.html">
+            <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHiGq5x0SqinC4KFPlAT-L5DEnn_5reux9sQ&s" alt="Profile Picture">
+        </a>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#" id="allJobsLink">All Jobs</a></li>
+            <li><a href="#" id="overviewLink">Overview</a></li>
+            <li><a href="#" id="reportLink">Report</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="overview-cards">
+            <div class="card">
+                <h3>Total Responses</h3>
+                <p>3,500</p>
+            </div>
+            <div class="card">
+                <h3>Responses Today</h3>
+                <p>503</p>
+            </div>
+            <div class="card">
+                <h3>Total Vacancies</h3>
+                <p>25</p>
+            </div>
+            <div class="card">
+                <h3>Closed Vacancies</h3>
+                <p>5/15</p>
+            </div>
+            <div class="card">
+                <h3>Recruitment Plan</h3>
+                <p>40/80</p>
+            </div>
+        </div>
+        <div class="statistics">
+            <div class="chart">
+                <h3>Candidate Statistics</h3>
+                <canvas id="barChart" class="bar-chart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Job Requisition by Location</h3>
+                <canvas id="pieChart" class="pie-chart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Page entry animation
+        window.onload = function () {
+            const header = document.getElementById("header");
+            const body = document.body;
+            header.style.transform = "translateX(0)"; // Slide header into view
+            body.style.opacity = 1; // Fade in the body
+        };
+
+        // Handle page transitions
+        function navigateTo(url) {
+            const header = document.getElementById("header");
+            const body = document.body;
+
+            header.style.transform = "translateX(100%)"; // Slide header out of view
+            body.style.opacity = 0; // Fade out the body
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500); // Match the transition duration
+        }
+
+        // Add event listeners to navigation links
+        document.getElementById("allJobsLink").addEventListener("click", function (e) {
+            e.preventDefault();
+            navigateTo("alljobs.html"); // Replace with the actual URL of your "All Jobs" page
+        });
+
+        document.getElementById("overviewLink").addEventListener("click", function (e) {
+            e.preventDefault();
+            navigateTo("overview.html"); // Replace with the actual URL of your "Overview" page
+        });
+
+        document.getElementById("reportLink").addEventListener("click", function (e) {
+            e.preventDefault();
+            navigateTo("report.html"); // Replace with the actual URL of your "Report" page
+        });
+
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Received Responses',
+                    data: [15, 18, 20, 10, 22, 30, 25, 20, 18, 15, 10, 5],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxPie = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Bengaluru', 'Kochi', 'Hyderabad'],
+                datasets: [{
+                    data: [40, 25, 35],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
